@@ -12,6 +12,7 @@
 #include <DMessageBox>
 #include <DMessageManager>
 #include <DWidgetUtil>
+#include <QList>
 DWIDGET_USE_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -23,15 +24,18 @@ class MainWindow : public DMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    void resizeEvent(QResizeEvent *event);
     void addPage();
     void delPage(int index);
     void closeALL();
+    void updateTabWidth();
 private:
     void closeEvent(QCloseEvent *e);
     int maxpage=-1;
-
-    QWindow *win[20];
-    QWidget *winw[20];
+    QList<QWindow *> win;
+    QList<QWidget *> winw;
+    //QWindow *win[20];
+    //QWidget *winw[20];
     WId wid;
     DTabBar *tt=new DTabBar;
     Ui::MainWindow *ui;
