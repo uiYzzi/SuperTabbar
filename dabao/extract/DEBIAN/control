@@ -1,5 +1,5 @@
 Package: top.yzzi.supertabbar
-Version: 0.0.1
+Version: 0.0.2
 Depends: x11-utils,libdtkwidget5,libdtkgui5,libdtkgui5
 Maintainer: 柚子 <chowhound_xb@163.com>
 Homepage: https://blog.yzzi.top

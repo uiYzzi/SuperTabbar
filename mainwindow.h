@@ -14,6 +14,8 @@
 #include <DWidgetUtil>
 #include <QList>
 DWIDGET_USE_NAMESPACE
+
+class EventMonitor;
 namespace Ui {
 class MainWindow;
 }
@@ -25,6 +27,7 @@ class MainWindow : public DMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     void resizeEvent(QResizeEvent *event);
+    void keyPressEvent(QKeyEvent *event);
     void addPage();
     void delPage(int index);
     void closeALL();

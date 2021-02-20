@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     tt->setTabsClosable(true);
     ui->tabWidget->tabBar()->hide();
     DMessageManager::instance()->sendMessage(this, style()->standardIcon(QStyle::SP_MessageBoxInformation),"亲，请点击想要添加的窗口");
+
     connect(tt,&DTabBar::currentChanged,[=](int index){
         ui->tabWidget->setCurrentIndex(index);
         //qDebug()<<index;
@@ -26,6 +27,45 @@ MainWindow::MainWindow(QWidget *parent) :
             MainWindow::delPage(index);
     });
     updateTabWidth();
+}
+void QWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->modifiers() & Qt::ControlModifier)
+       {
+        if (event->key() == Qt::Key_Left)//单键触发
+        {
+
+        }else if (event->key() == Qt::Key_Right)//单键触发
+        {
+
+        }
+    }
+}
+void MainWindow::keyPressEvent(QKeyEvent *event)
+
+{
+    if (event->modifiers() & Qt::ControlModifier)
+       {
+        if (event->key() == Qt::Key_Left)//单键触发
+        {
+            int index=tt->currentIndex();
+            if(index!=0)
+            {
+                index=index-1;
+                tt->setCurrentIndex(index);
+                ui->tabWidget->setCurrentIndex(index);
+            }
+        }else if (event->key() == Qt::Key_Right)//单键触发
+        {
+            int index=tt->currentIndex();
+            if(index!=maxpage)
+            {
+                index=index+1;
+                tt->setCurrentIndex(index);
+                ui->tabWidget->setCurrentIndex(index);
+            }
+        }
+    }
 }
 void MainWindow::updateTabWidth()
 {
