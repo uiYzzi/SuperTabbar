@@ -172,7 +172,4 @@ void MainWindow::closeALL()
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     MainWindow::closeALL();
-    //e->ignore();
-    QApplication* app;
-    app->exit(0);
  }
