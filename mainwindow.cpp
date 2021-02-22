@@ -163,6 +163,8 @@ void MainWindow::closeALL()
         qDebug()<<i;
     }*/
     while (maxpage>=0) {
+        win[maxpage]->setParent(NULL);
+        winw[maxpage]->setParent(NULL);
         qDebug()<<win[maxpage];
         delPage(maxpage);
     }
