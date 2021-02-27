@@ -48,15 +48,10 @@ void MainWindow::setTitlebarColor()
 
         if(tcolor.red()*0.299 + tcolor.green()*0.578 + tcolor.blue()*0.114 >= 192){ //浅色
             palette.setColor(QPalette::ButtonText,QColor("#414D68"));
-            palette.setColor(QPalette::Window,QColor("#FFFFFF"));
-            //std::stringstream i;
-            //i<<tcolor.red()*0.8<<","<<tcolor.green()*0.8<<","<<tcolor.blue()*0.8;
-            //tt->setStyleSheet("color:#414D68;background-color:rgb("+QString(i.str().c_str())+")");
+            tt->setStyleSheet("color:#414D68;DTabBar::tab:disabled{width:0;color:transparent;}");
         }else{  //深色
             palette.setColor(QPalette::ButtonText,QColor("#FFFFFF"));
-            //std::stringstream i;
-            //i<<tcolor.red()*0.8<<","<<tcolor.green()*0.8<<","<<tcolor.blue()*0.8;
-            //tt->setStyleSheet("color:#FFFFFF;background-color:rgb("+QString(i.str().c_str())+")");
+            tt->setStyleSheet("color:#5b657c;DTabBar::tab:disabled{width:0;color:transparent;}");
         }
         titlebar()->setPalette(palette);
         tt->setPalette(palette);
