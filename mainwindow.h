@@ -13,6 +13,11 @@
 #include <DMessageManager>
 #include <DWidgetUtil>
 #include <QList>
+#include <QScreen>
+#include <QPoint>
+#include <QDesktopWidget>
+#include <QTime>
+#include <sstream>
 DWIDGET_USE_NAMESPACE
 
 class EventMonitor;
@@ -32,16 +37,22 @@ public:
     void delPage(int index);
     void closeALL();
     void updateTabWidth();
+    bool isdark;
+    void Sleep(int msec);
+
 private:
     void closeEvent(QCloseEvent *e);
     int maxpage=-1;
     QList<QWindow *> win;
     QList<QWidget *> winw;
+    QList<WId> widlist;
+    QList<QPoint> wpos;
     //QWindow *win[20];
     //QWidget *winw[20];
-    WId wid;
     DTabBar *tt=new DTabBar;
     Ui::MainWindow *ui;
+    void setTitlebarColor();
+
 };
 
 #endif // MAINWINDOW_H

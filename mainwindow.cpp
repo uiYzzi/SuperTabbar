@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(tt,&DTabBar::currentChanged,[=](int index){
         ui->tabWidget->setCurrentIndex(index);
+        MainWindow::Sleep(50);
+        MainWindow::setTitlebarColor();
         //qDebug()<<index;
     });
     connect(tt,&DTabBar::tabAddRequested,[=](){
@@ -27,6 +29,43 @@ MainWindow::MainWindow(QWidget *parent) :
             MainWindow::delPage(index);
     });
     updateTabWidth();
+    connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::themeTypeChanged,[=](){
+        //tt->setCurrentIndex(0);
+    });
+
+}
+void MainWindow::setTitlebarColor()
+{
+
+   // qDebug()<<widlist.at(index);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    screen->grabWindow(this->winId()).save("/home/yzzi/Downloads/DtkDemo/123.jpg");
+    QColor tcolor;
+    tcolor=screen->grabWindow(this->winId()).toImage().pixel(10,60);
+
+    QPalette palette = titlebar()->palette();
+    palette.setColor(QPalette::Base,tcolor);
+
+        if(tcolor.red()*0.299 + tcolor.green()*0.578 + tcolor.blue()*0.114 >= 192){ //浅色
+            palette.setColor(QPalette::ButtonText,QColor("#414D68"));
+            palette.setColor(QPalette::Window,QColor("#FFFFFF"));
+            //std::stringstream i;
+            //i<<tcolor.red()*0.8<<","<<tcolor.green()*0.8<<","<<tcolor.blue()*0.8;
+            //tt->setStyleSheet("color:#414D68;background-color:rgb("+QString(i.str().c_str())+")");
+        }else{  //深色
+            palette.setColor(QPalette::ButtonText,QColor("#FFFFFF"));
+            //std::stringstream i;
+            //i<<tcolor.red()*0.8<<","<<tcolor.green()*0.8<<","<<tcolor.blue()*0.8;
+            //tt->setStyleSheet("color:#FFFFFF;background-color:rgb("+QString(i.str().c_str())+")");
+        }
+        titlebar()->setPalette(palette);
+        tt->setPalette(palette);
+}
+void MainWindow::Sleep(int msec)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(msec);
+    while( QTime::currentTime() < dieTime )
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 void QWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -98,20 +137,37 @@ void MainWindow::resizeEvent(QResizeEvent *event){
 }
 void MainWindow::delPage(int index)
 {
+    QDesktopWidget *screenResolution = QApplication::desktop();
+    int center_y = screenResolution->height()/2 - wpos.at(index).y()/2;
+    int center_x = screenResolution->width()/2 - wpos.at(index).x()/2;
+    QScreen *screen = qApp->primaryScreen();
+    int dpiVal = screen->logicalDotsPerInch();
+    qDebug()<<dpiVal;
+    float i;
+    switch (dpiVal) {
+        case 96:
+            i=1;
+            break;
+        case 120:
+            i=1.25;
+            break;
+        case 144:
+            i=1.5;
+            break;
+        case 192:
+            i=2;
+            break;
+    }
+    win[index]->setGeometry(center_y,center_x,wpos.at(index).x()/i,wpos.at(index).y()/i);
     win[index]->setParent(NULL);
     winw[index]->setParent(NULL);
-    tt->setTabEnabled(index, false);
-    //delete  winw[index];
-    tt->setTabEnabled(index,false);
-    tt->removeTab(index);
+    win[index]->show();
+    widlist.removeAt(index);
     win.removeAt(index);
     winw.removeAt(index);
-    //for(int i=index;i<=maxpage;i++)
-    //{
-    //    win[index]=win[index+i];
-    //    winw[index]=winw[index+i];
-    //}
-    //ui->tabWidget->removeTab(index);
+    wpos.removeAt(index);
+    tt->setTabEnabled(index, false);
+    tt->removeTab(index);
     maxpage=maxpage-1;
 }
 void MainWindow::addPage()
@@ -122,11 +178,16 @@ void MainWindow::addPage()
     cmd->waitForFinished();
     output=cmd->readAllStandardOutput();
     output=output.simplified();
+
     int i=output.indexOf("Window id: ")+11;
     int a=output.indexOf("\" Absolute")-20;
+    int b=output.indexOf("Width: ");
+    int c=output.indexOf(" Height: ");
+    int d=output.indexOf(" Depth: ");
     winid=output.mid(i,9);
     winname=output.mid(i+11,a-i+9);
-
+    QString w=output.mid(b+7,c-b-7);
+    QString h=output.mid(c+9,d-c-9);
     if(winid.toInt(NULL,16)==MainWindow::winId())
     {
         DMessageManager::instance()->sendMessage(this, style()->standardIcon(QStyle::SP_MessageBoxWarning),"QAQ 干嘛点我！");
@@ -142,28 +203,26 @@ void MainWindow::addPage()
     }
 
     int index=tt->addTab(winname);;
-    //qDebug()<<index;
-    wid=WId(winid.toInt(NULL,16));
-    win<<QWindow::fromWinId(wid);
-    winw<<QWidget::createWindowContainer(win.at(index),NULL,Qt::FramelessWindowHint);;
+    WId wid=WId(winid.toInt(NULL,16));
+    widlist<<wid;
 
-    //win[index] = QWindow::fromWinId(wid);
-    //winw[index]= QWidget::createWindowContainer(win[index],NULL,Qt::FramelessWindowHint);;
+    win<<QWindow::fromWinId(wid);
+    wpos<<QPoint(w.toInt(),h.toInt());
+    winw<<QWidget::createWindowContainer(win.at(index),NULL,Qt::FramelessWindowHint);
+
     ui->tabWidget->insertTab(index,winw[index],winname);
     ui->tabWidget->setCurrentIndex(index);
     tt->setCurrentIndex(index);
+    Sleep(50);
+    MainWindow::setTitlebarColor();
     maxpage=maxpage+1;
     return ;
 }
+
 void MainWindow::closeALL()
 {
-    /*for (int i=0;i<=maxpage;i++) {
-        win[i]->setParent(NULL);
-        winw[i]->setParent(NULL);
-        qDebug()<<i;
-    }*/
     while (maxpage>=0) {
-        qDebug()<<win[maxpage];
+        //qDebug()<<win[maxpage];
         delPage(maxpage);
     }
 }
