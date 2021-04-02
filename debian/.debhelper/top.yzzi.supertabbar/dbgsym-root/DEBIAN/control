@@ -1,0 +1,12 @@
+Package: top.yzzi.supertabbar-dbgsym
+Source: top.yzzi.supertabbar
+Version: 0.1.0
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: ”daya” <”admin@yzzi.top”>
+Installed-Size: 32
+Depends: top.yzzi.supertabbar (= 0.1.0)
+Section: debug
+Priority: optional
+Description: debug symbols for top.yzzi.supertabbar
+Build-Ids: 621758a573ee10afb77a2803ca6ddbbd325ea9be

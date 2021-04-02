@@ -1,0 +1,12 @@
+Source: top.yzzi.supertabbar
+Section: utils
+Priority: optional
+Maintainer: ”daya” <”admin@yzzi.top”>
+Build-Depends: debhelper (>= 11), qt5-qmake, qttools5-dev-tools, libdtkwidget-dev
+Standards-Version: 4.1.3
+Homepage: https://www.yuque.com/mvip9k
+
+Package: top.yzzi.supertabbar
+Architecture: any
+Depends: x11-utils,libdtkwidget5,libdtkgui5,libdtkgui5
+Description: 超级标签栏

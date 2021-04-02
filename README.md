@@ -1,1 +1,1 @@
-#chaojibiaoqianlan
+#dpkg-buildpackage -b

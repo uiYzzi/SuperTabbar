@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=SuperTabbar
+Name[zh_CN]=超级标签栏
+Name[zh_TW]=超级标签栏
+Comment=SuperTabbar
+Comment[zh_CN]=超级标签栏
+Comment[zh_TW]=超级标签栏
+Icon=top.yzzi.supertabbar
+Exec=/opt/apps/top.yzzi.supertabbar/files/SuperTabbar
+Categories=Utility;
+Terminal=false
+StartupNotify=true
+StartupWMClass=SuperTabbar

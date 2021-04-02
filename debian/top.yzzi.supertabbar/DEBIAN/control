@@ -1,0 +1,10 @@
+Package: top.yzzi.supertabbar
+Version: 0.1.0
+Architecture: amd64
+Maintainer: ”daya” <”admin@yzzi.top”>
+Installed-Size: 82
+Depends: x11-utils, libdtkwidget5, libdtkgui5
+Section: utils
+Priority: optional
+Homepage: https://www.yuque.com/mvip9k
+Description: 超级标签栏
