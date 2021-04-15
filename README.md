@@ -25,6 +25,7 @@ dpkg-buildpackage -b
 - 🍥 把多个软件窗口整合成一个窗口，提高效率
 - 🍔 点点鼠标就能合并窗口，快速便捷
 - 🍟 像使用浏览器一样使用所有软件
+- 🌭  跟随窗口变色！！
 - 🌭  更多功能，敬请期待……
 
 
@@ -37,9 +38,9 @@ dpkg-buildpackage -b
 
 ### 🎨 截图
 
-|                      🥼 主页面                       |                      🧥 多窗口合并                       |
+|                      🥼 跟随窗口变色                       |                      🧥 工作效率提高                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![海报.png](https://cdn.nlark.com/yuque/0/2021/png/1375403/1613813345942-a3938712-d5f3-4f5a-b120-063614c164ff.png?x-oss-process=image%2Fresize%2Cw_516) | ![列表.png](https://cdn.nlark.com/yuque/0/2021/png/1375403/1613813471360-b518b2e8-39fe-41ae-b5c0-ae795c8d7e30.png?x-oss-process=image%2Fresize%2Cw_517) |
-|                            👔 工作效率提高                          |                            👕 Wine 也支持                      |
-| ![搜索.png](https://cdn.nlark.com/yuque/0/2021/png/1375403/1613813520920-7feee301-f4b0-45d1-b29f-2a97dc0e46f8.png?x-oss-process=image%2Fresize%2Cw_516) | ![详情.png](https://cdn.nlark.com/yuque/0/2021/png/1375403/1613813640208-a0aa0e39-0a18-46d3-8a28-e9e8b89bda43.png?x-oss-process=image%2Fresize%2Cw_517) |
+| ![海报.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/202102280201531185_%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210228015936.png) | ![列表.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173132.png) |
+|                            👔 多窗口合并                          |                            👕 Wine 也支持                      |
+| ![搜索.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173027.png) | ![详情.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173334.png) |
 
