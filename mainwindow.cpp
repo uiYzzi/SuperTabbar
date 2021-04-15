@@ -11,10 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     titlebar()->setMenuVisible(false);
     tt->setTabsClosable(true);
     ui->tabWidget->tabBar()->hide();
-    DMessageManager::instance()->sendMessage(this, style()->standardIcon(QStyle::SP_MessageBoxInformation),"亲，请点击想要添加的窗口");
 
     connect(tt,&DTabBar::currentChanged,[=](int index){
         ui->tabWidget->setCurrentIndex(index);
+        //这里延时50ms是因为切换页面和截图取色有时间差
         MainWindow::Sleep(50);
         MainWindow::setTitlebarColor();
         //qDebug()<<index;
@@ -39,13 +39,13 @@ void MainWindow::setTitlebarColor()
 
    // qDebug()<<widlist.at(index);
     QScreen *screen = QGuiApplication::primaryScreen();
-    screen->grabWindow(this->winId()).save("/home/yzzi/Downloads/DtkDemo/123.jpg");
     QColor tcolor;
     tcolor=screen->grabWindow(this->winId()).toImage().pixel(10,60);
 
     QPalette palette = titlebar()->palette();
     palette.setColor(QPalette::Base,tcolor);
 
+        //判断取到的颜色是深色还是浅色，保证titlebar上的控件始终保持可见
         if(tcolor.red()*0.299 + tcolor.green()*0.578 + tcolor.blue()*0.114 >= 192){ //浅色
             palette.setColor(QPalette::ButtonText,QColor("#414D68"));
             tt->setStyleSheet("color:#414D68;DTabBar::tab:disabled{width:0;color:transparent;}");
@@ -56,12 +56,15 @@ void MainWindow::setTitlebarColor()
         titlebar()->setPalette(palette);
         tt->setPalette(palette);
 }
+
 void MainWindow::Sleep(int msec)
 {
     QTime dieTime = QTime::currentTime().addMSecs(msec);
     while( QTime::currentTime() < dieTime )
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
+
+//快捷键这部分有点问题，后面再修复
 void QWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->modifiers() & Qt::ControlModifier)
@@ -183,6 +186,7 @@ void MainWindow::addPage()
     winname=output.mid(i+11,a-i+9);
     QString w=output.mid(b+7,c-b-7);
     QString h=output.mid(c+9,d-c-9);
+    //目前是按照窗口名来做黑名单，由于dde桌面的窗口名是中文的“桌面”，所以导致在系统语言为英文的情况下对桌面的黑名单失效
     if(winid.toInt(NULL,16)==MainWindow::winId())
     {
         DMessageManager::instance()->sendMessage(this, style()->standardIcon(QStyle::SP_MessageBoxWarning),"QAQ 干嘛点我！");
@@ -221,6 +225,7 @@ void MainWindow::closeALL()
         delPage(maxpage);
     }
 }
+//退出程序时自动脱离所有窗口
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     MainWindow::closeALL();
