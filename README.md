@@ -40,7 +40,7 @@ dpkg-buildpackage -b
 
 |                      🥼 跟随窗口变色                       |                      🧥 工作效率提高                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![海报.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/202102280201531185_%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210228015936.png) | ![列表.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173132.png) |
+| ![跟随窗口变色.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/202102280201531185_%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210228015936.png) | ![工作效率提高.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173132.png) |
 |                            👔 多窗口合并                          |                            👕 Wine 也支持                      |
-| ![搜索.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173027.png) | ![详情.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173334.png) |
+| ![多窗口合并.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173027.png) | ![Wine.png](https://gitee.com/Limexb/SuperTabbar/raw/master/screenshot/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20210220173334.png) |
 
