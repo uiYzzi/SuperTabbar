@@ -15,7 +15,7 @@ sudo apt install qt5-qmake qttools5-dev-tools libdtkwidget-dev debhelper x11-uti
 
 #### 编译
 ```
-dpkg-buildpackage -b
+dpkg-buildpackage -b -d
 ```
 
 
